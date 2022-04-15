@@ -1,2 +1,2 @@
 from dblpy.authors import Author, AuthorNote, get_authors
-from dblpy.dblp_api import DblpAPI
+from dblpy.publications import Publication, get_publications

@@ -20,10 +20,9 @@ class Author():
     url:str = ''
     aliases:List[str] = []
 
-    def __init__(self, name:str, url:str, notes:dict = None, aliases:dict = None) -> None:
+    def __init__(self, name:str, url:str, notes = None, aliases:dict = None) -> None:
         self.name = name
         self.url = url
-
         if notes:
             self._prepare_notes(notes)
         if aliases:
@@ -36,7 +35,6 @@ class Author():
     def _prepare_notes(self, notes):
         if type(notes) == dict:
             notes = [notes]
-
         self.notes = [
             AuthorNote(
                 type=note['@type'], 
@@ -53,15 +51,16 @@ class Author():
             for alias in aliases]
         return aliases
 
-def get_authors(q: str) -> List[Author]:
-    authors_dict = DblpAPI.load_hits(endpoint='author', q=q)
+
+def get_authors(q: str, max_results: int = 100) -> List[Author]:
+    authors_dict = DblpAPI.load_hits(endpoint='author', q=q, max_results=max_results)
     authors_objects = [
         Author(
-            author['info']['author'], 
-            author['info']['url'], 
-            author['info']['notes']['note'] 
+            name=author['info']['author'], 
+            url=author['info']['url'], 
+            notes=author['info']['notes']['note'] 
                 if 'notes' in author['info'] else None,
-            author['info']['aliases']['alias']
+            aliases=author['info']['aliases']['alias']
                 if 'aliases' in author['info'] else None)
         for author in authors_dict]
 
@@ -69,6 +68,6 @@ def get_authors(q: str) -> List[Author]:
 
 
 if __name__ == '__main__':
-    authors = get_authors(q='Donald E. Knuth')
-    for a in authors:
-        print(a.aliases)
+    publ = get_authors(q='Knuth')
+    for p in publ:
+        print(p)

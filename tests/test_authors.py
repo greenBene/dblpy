@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import Mock
-from dblpy import Author, DblpAPI, get_authors
+from dblpy import Author, get_authors
+from dblpy.dblp_api import DblpAPI
 
 class AuthorsTestCase(unittest.TestCase):
 
