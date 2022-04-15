@@ -24,7 +24,6 @@ class DblpAPI():
 
             total = int(result['hits']['@total'])
             sent = int(result['hits']['@sent'])
-            print(result)
             if sent > 0:
                 hits += result['hits']['hit']
 

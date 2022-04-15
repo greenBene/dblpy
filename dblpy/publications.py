@@ -5,7 +5,10 @@ class Publication():
     authors: List[str] = []
     title: str = ''
     venue: str = ''
+    volume: str = ''
+    number: str = ''
     pages: str = ''
+    publisher: str = ''
     year: str = ''
     type: str = ''
     access: str = ''
@@ -14,10 +17,13 @@ class Publication():
     ee: str = ''
     url: str = ''
 
-    def __init__(self, authors:List, title: str, venue: str, pages: str, year: str, type: str, access: str, key: str, doi: str, ee: str, url: str) -> None:
+    def __init__(self, authors:List, title: str, venue: str, volume :str, number: str, pages: str, publisher: str, year: str, type: str, access: str, key: str, doi: str, ee: str, url: str) -> None:
         self.title = title
         self.venue = venue
+        self.volume = volume
+        self.number = number
         self.pages = pages
+        self.publisher = publisher
         self.year = year
         self.type = type
         self.access = access
@@ -45,7 +51,10 @@ def get_publications(q: str, max_results: int = 100) -> List[Publication]:
             authors=publication['info']['authors']['author'],
             title=publication['info']['title'],
             venue=publication['info'].get('venue', ''),
+            volume=publication['info'].get('volume', ''),
+            number=publication['info'].get('number', ''),
             pages=publication['info'].get('pages', ''),
+            publisher=publication['info'].get('publisher', ''),
             year=publication['info'].get('year', ''),
             type=publication['info'].get('type', ''),
             access=publication['info'].get('access', ''),

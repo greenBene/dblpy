@@ -68,6 +68,6 @@ def get_authors(q: str, max_results: int = 100) -> List[Author]:
 
 
 if __name__ == '__main__':
-    publ = get_authors(q='Knuth')
+    publ = get_authors(q='Donald Ervin Knuth')
     for p in publ:
         print(p)
