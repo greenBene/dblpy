@@ -18,7 +18,8 @@ class AuthorsTestCase(unittest.TestCase):
                 {
                     "@type":"award",
                     "text":"BBVA Foundation Frontiers of Knowledge Award"}
-            ]
+            ],
+            aliases=['Donald Ervin Knuth']
         )
         self.assertEqual(author.name, 'Donald E. Knuth')
         self.assertEqual(author.url, 'https://dblp.org/pid/k/DonaldEKnuth')
@@ -28,6 +29,7 @@ class AuthorsTestCase(unittest.TestCase):
         self.assertEqual(author.notes[1].text, 'Turing Award')
         self.assertEqual(author.notes[2].type, 'award')
         self.assertEqual(author.notes[2].text, 'BBVA Foundation Frontiers of Knowledge Award')
+        self.assertEqual(author.aliases, ['Donald Ervin Knuth'])
 
     def test_print_author(self):
         author = Author(
@@ -43,7 +45,8 @@ class AuthorsTestCase(unittest.TestCase):
                 {
                     "@type":"award",
                     "text":"BBVA Foundation Frontiers of Knowledge Award"}
-            ]
+            ],
+            aliases=['Donald Ervin Knuth']
         )
 
         self.assertEqual(str(author), 'Donald E. Knuth (https://dblp.org/pid/k/DonaldEKnuth)')
