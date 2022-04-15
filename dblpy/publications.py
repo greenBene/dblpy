@@ -39,7 +39,7 @@ class Publication():
         return [author['text'] for author in authors]
 
     def __str__(self) -> str:
-        s = f'{self.year}. {self.authors[0]} et al. "{self.title}". ({self.ee})'
+        s = f'{self.year}. {self.authors[0]} et al. "{self.title}". ({self.url})'
         return s
 
 

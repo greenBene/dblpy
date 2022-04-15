@@ -69,7 +69,7 @@ class PublicationsTestCase(unittest.TestCase):
             ee='https://doi.org/10.1145/2322176.2322189',
             url='https://dblp.org/rec/conf/acm/PapadimitriouAK12')
         
-        self.assertEqual(str(publication), '2012. Christos H. Papadimitriou et al. "An Algorithmic View of the Universe". (https://doi.org/10.1145/2322176.2322189)')
+        self.assertEqual(str(publication), '2012. Christos H. Papadimitriou et al. "An Algorithmic View of the Universe". (https://dblp.org/rec/conf/acm/PapadimitriouAK12)')
     
     def test_get_publications(self):
         DblpAPI.load_hits = Mock(
