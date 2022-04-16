@@ -21,7 +21,7 @@ class DblpAPI():
             url = DblpAPI.BASE_URL.format(endpoint=endpoint) + urllib.parse.urlencode(params)
             re = requests.get(url=url)
 
-            if re.ok:
+            if not re.ok:
                 raise DblpApiError(f'Could not load data from DBLP API. Status code: {re.status_code}. Error code: {re.json().get("status", "")}' )
 
             result = re.json()['result']
