@@ -7,18 +7,18 @@ class AuthorNote():
     text:str = ''
 
     def __init__(self, type:str, text:str) -> None:
-        self.type = type
-        self.text = text
+        self.type = type # Type of affiliation
+        self.text = text # Name of affiliation
 
     def __str__(self) -> str:
         s = f'{self.type}: {self.text}'
         return s
 
 class Author():
-    name:str = ''
-    notes:List[AuthorNote] = []
-    url:str = ''
-    aliases:List[str] = []
+    name:str = '' # Name of Author
+    notes:List[AuthorNote] = [] # List of affiliations and awards linked to author
+    url:str = '' # Link to dblp page of author
+    aliases:List[str] = [] # List of other names of same author
 
     def __init__(self, name:str, url:str, notes = None, aliases:dict = None) -> None:
         self.name = name

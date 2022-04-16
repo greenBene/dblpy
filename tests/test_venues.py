@@ -7,20 +7,20 @@ from unittest.mock import Mock
 class VenuesTestCase(unittest.TestCase):
     def test_creating_venue(self):
         venue = Venue(
-            venue='Electronic Information, the Visual Arts and Beyond Conference (EVA)',
+            name='Electronic Information, the Visual Arts and Beyond Conference (EVA)',
             acronym='EVA',
             type='Conference or Workshop',
             url='https://dblp.org/db/conf/evaconf/'
         )
 
-        self.assertEqual(venue.venue, 'Electronic Information, the Visual Arts and Beyond Conference (EVA)')
+        self.assertEqual(venue.name, 'Electronic Information, the Visual Arts and Beyond Conference (EVA)')
         self.assertEqual(venue.acronym, 'EVA')
         self.assertEqual(venue.type, 'Conference or Workshop')
         self.assertEqual(venue.url, 'https://dblp.org/db/conf/evaconf/')
 
     def test_print_venue(self):
         venue = Venue(
-            venue='Electronic Information, the Visual Arts and Beyond Conference (EVA)',
+            name='Electronic Information, the Visual Arts and Beyond Conference (EVA)',
             acronym='EVA',
             type='Conference or Workshop',
             url='https://dblp.org/db/conf/evaconf/'
@@ -42,10 +42,10 @@ class VenuesTestCase(unittest.TestCase):
                     "type":"Conference or Workshop",
                     "url":"https://dblp.org/db/conf/evaconf/"}}])
         venues = get_venues(q='Berlin')
-        self.assertEqual(venues[0].venue, 'Berlin Workshops')
+        self.assertEqual(venues[0].name, 'Berlin Workshops')
         self.assertEqual(venues[0].type, 'Conference or Workshop')
         self.assertEqual(venues[0].url, 'https://dblp.org/db/conf/berlin/')
-        self.assertEqual(venues[1].venue, 'Electronic Information, the Visual Arts and Beyond Conference (EVA)')
+        self.assertEqual(venues[1].name, 'Electronic Information, the Visual Arts and Beyond Conference (EVA)')
         self.assertEqual(venues[1].acronym, 'EVA')
         self.assertEqual(venues[1].type, 'Conference or Workshop')
         self.assertEqual(venues[1].url, 'https://dblp.org/db/conf/evaconf/')

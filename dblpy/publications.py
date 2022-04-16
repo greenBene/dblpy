@@ -1,21 +1,22 @@
 from typing import List
+from dblpy import authors
 from dblpy.dblp_api import DblpAPI
 
 class Publication():
-    authors: List[str] = []
-    title: str = ''
-    venue: str = ''
-    volume: str = ''
-    number: str = ''
-    pages: str = ''
-    publisher: str = ''
-    year: str = ''
-    type: str = ''
-    access: str = ''
-    key: str = ''
-    doi: str = ''
-    ee: str = ''
-    url: str = ''
+    authors: List[str] = [] # List of author names 
+    title: str = '' # Name of publication
+    venue: str = '' # Venue of publication
+    volume: str = '' # Volume in which publication was published
+    number: str = '' # Number of publication volume
+    pages: str = '' # Pages of publication 
+    publisher: str = '' # Publisher of publication
+    year: str = '' # Year when publication was published
+    type: str = '' # Type of publication
+    access: str = '' # Type of access
+    key: str = '' # Key of publication
+    doi: str = '' # doi of publication 
+    ee: str = '' # Link to electronic edition of publication
+    url: str = '' # Link to dblp page of publication
 
     def __init__(self, authors:List, title: str, venue: str, volume :str, number: str, pages: str, publisher: str, year: str, type: str, access: str, key: str, doi: str, ee: str, url: str) -> None:
         self.title = title
@@ -34,12 +35,14 @@ class Publication():
         self.authors = self._prepare_authors(authors)
     
     def _prepare_authors(self, authors):
+        if authors == None:
+            return ['']
         if type(authors) != list:
             authors = [authors]
         return [author['text'] for author in authors]
 
     def __str__(self) -> str:
-        s = f'{self.year}. {self.authors[0]} et al. "{self.title}". ({self.url})'
+        s = f'{self.year}. {self.authors[0] if self.authors != None else ""} et al. "{self.title}". ({self.url})'
         return s
 
 
@@ -48,7 +51,8 @@ def get_publications(q: str, max_results: int = 100) -> List[Publication]:
 
     publications_objects = [
         Publication(
-            authors=publication['info']['authors']['author'],
+            authors=publication['info']['authors']['author']
+                if 'authors' in publication['info'] else None,
             title=publication['info']['title'],
             venue=publication['info'].get('venue', ''),
             volume=publication['info'].get('volume', ''),
@@ -70,6 +74,6 @@ def get_publications(q: str, max_results: int = 100) -> List[Publication]:
 
 
 if __name__ == '__main__':
-    publ = get_publications(q='mHealthAtlas')
+    publ = get_publications(q='knuth', max_results=500)
     for p in publ:
         print(p)

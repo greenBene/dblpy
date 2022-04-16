@@ -4,19 +4,19 @@ from dblpy.dblp_api import DblpAPI
 
 
 class Venue():
-    venue: str = ''
-    acronym: str = ''
-    type: str = ''
-    url: str = ''
+    venue: str = '' # Name of venue
+    acronym: str = '' # Acronym of venue
+    type: str = '' # Type of venue
+    url: str = '' # Link to dblp page of venue
 
-    def __init__(self, venue: str, acronym: str, type: str, url: str) -> None:
-        self.venue = venue
+    def __init__(self, name: str, acronym: str, type: str, url: str) -> None:
+        self.name = name
         self.acronym = acronym
         self.type = type
         self.url = url
 
     def __str__(self) -> str:
-        s = f'{self.venue} ({self.url})'
+        s = f'{self.name} ({self.url})'
         return s
 
 def get_venues(q: str, max_results: int = 100):
@@ -24,7 +24,7 @@ def get_venues(q: str, max_results: int = 100):
 
     venue_objects = [
         Venue(
-            venue=venue['info'].get('venue', ''),
+            name=venue['info'].get('venue', ''),
             acronym=venue['info'].get('acronym', ''),
             type=venue['info'].get('type', ''),
             url=venue['info'].get('url', '')
