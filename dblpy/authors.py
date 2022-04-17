@@ -3,6 +3,8 @@ from typing import List
 from dblpy.dblp_api import DblpAPI
 
 class AuthorNote():
+    """Class to wrap notes of authors from results of dblp search api"""
+    
     type:str = ''
     text:str = ''
 
@@ -15,6 +17,8 @@ class AuthorNote():
         return s
 
 class Author():
+    """Class to wrap author results of dblp search api"""
+
     name:str = '' # Name of Author
     notes:List[AuthorNote] = [] # List of affiliations and awards linked to author
     url:str = '' # Link to dblp page of author
@@ -53,6 +57,13 @@ class Author():
 
 
 def get_authors(q: str, max_results: int = 100) -> List[Author]:
+    """
+    Get a list of authors matching the query q.
+
+    Keyword arguments:
+    q:str -- query to search for author
+    max_results:int -- maximum number of authors to return (default 100)
+    """
     authors_dict = DblpAPI.load_hits(endpoint='author', q=q, max_results=max_results)
     authors_objects = [
         Author(

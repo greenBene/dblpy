@@ -3,6 +3,8 @@ from dblpy import authors
 from dblpy.dblp_api import DblpAPI
 
 class Publication():
+    """Class to wrap publication results of dblp search api"""
+
     authors: List[str] = [] # List of author names 
     title: str = '' # Name of publication
     venue: str = '' # Venue of publication
@@ -47,6 +49,13 @@ class Publication():
 
 
 def get_publications(q: str, max_results: int = 100) -> List[Publication]:
+    """
+    Get a list of publications matching the query q.
+
+    Keyword arguments:
+    q:str -- query to search for publications
+    max_results:int -- maximum number of authors to return (default 100)
+    """
     publications_dict = DblpAPI.load_hits(endpoint='publ', q=q, max_results=max_results)
 
     publications_objects = [

@@ -6,7 +6,7 @@ from dblpy import get_authors, get_venues, get_publications
 
 authors = get_authors(q='Donald Knuth')
 for a in authors:
-    print(a.name)
+    print(a)
 
     for n in a.notes:
         print(f'|{n}')
@@ -24,11 +24,11 @@ for v in venues:
 `$pip3 install dblpy-lib`
 
 ## Using the Library
-The library offers funtions to query dblp.org for publications, authors, and venues. They return lists of the respective objects.
+The library offers functions to query dblp.org for publications, authors, and venues. They return lists of the respective objects.
 
-For some publications, authors, or venues, not all possible attributes are avaible. In these cases, they are set to an empty string.
+For some publications, authors, or venues, not all possible attributes are available. In these cases, they are set to an empty string.
 
-You can limit the number of results you want to get with the argument `max_results=X`. This is set by default to 100.
+You can limit the number of results with the argument `max_results=X`. This is set by default to 100.
 
 ### Authors 
 ```py
@@ -56,11 +56,11 @@ publ.volume # Volume in which publication was published
 publ.number # Number of publication volume
 publ.pages # Pages of publication 
 publ.publisher # Publisher of publication
-publ.year # Year when publication was published
+publ.year # Year when publication was released
 publ.type # Type of publication
 publ.access # Type of access
 publ.key # Key of publication
-publ.doi # doi of publication 
+publ.doi # Doi of publication 
 publ.ee # Link to electronic edition of publication
 publ.url # Link to dblp page of publication
 ```
