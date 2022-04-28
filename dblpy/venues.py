@@ -5,11 +5,11 @@ from dblpy.dblp_api import DblpAPI
 
 class Venue():
     """Class to wrap venue results of dblp search api"""
-    
-    venue: str = '' # Name of venue
-    acronym: str = '' # Acronym of venue
-    type: str = '' # Type of venue
-    url: str = '' # Link to dblp page of venue
+
+    venue: str = ''  # Name of venue
+    acronym: str = ''  # Acronym of venue
+    type: str = ''  # Type of venue
+    url: str = ''  # Link to dblp page of venue
 
     def __init__(self, name: str, acronym: str, type: str, url: str) -> None:
         self.name = name
@@ -20,6 +20,7 @@ class Venue():
     def __str__(self) -> str:
         s = f'{self.name} ({self.url})'
         return s
+
 
 def get_venues(q: str, max_results: int = 100):
     """
@@ -42,6 +43,7 @@ def get_venues(q: str, max_results: int = 100):
     ]
 
     return venue_objects
+
 
 if __name__ == "__main__":
     venues = get_venues(q='Berlin')

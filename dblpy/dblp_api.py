@@ -1,6 +1,7 @@
 import requests
 import urllib.parse
 
+
 class DblpAPI():
 
     BASE_URL = 'https://dblp.org/search/{endpoint}/api?'
@@ -18,11 +19,15 @@ class DblpAPI():
                 'h': 50,
                 'f': first_id
             }
-            url = DblpAPI.BASE_URL.format(endpoint=endpoint) + urllib.parse.urlencode(params)
+            url = DblpAPI.BASE_URL.format(endpoint=endpoint) + \
+                urllib.parse.urlencode(params)
             re = requests.get(url=url)
 
             if not re.ok:
-                raise DblpApiError(f'Could not load data from DBLP API. Status code: {re.status_code}. Error code: {re.json().get("status", "")}' )
+                raise DblpApiError(
+                    'Could not load data from DBLP API. ' +
+                    f'Status code: {re.status_code}. Error code: ' +
+                    f'{re.json().get("status", "")}')
 
             result = re.json()['result']
 
@@ -34,6 +39,7 @@ class DblpAPI():
             first_id = len(hits)
 
         return hits[:max_results]
+
 
 class DblpApiError(Exception):
     pass
